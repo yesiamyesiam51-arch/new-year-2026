@@ -1,48 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy New Year 2026 – Apsaria</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Caveat&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy New Year 2026 - Apsaria</title>
+<link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Caveat&family=Pacifico&display=swap" rel="stylesheet">
 </head>
-<body class="page-0">
+<body>
 
-  <!-- Landing Page -->
-  <div class="container" id="landing">
-    <h1>🎆 Happy New Year 2026 – Apsaria 🎆</h1>
-    <button id="startBtn">Start</button>
-  </div>
+<!-- PAGES -->
+<div class="page page0" id="page0">
+  <h1>HAPPY NEW YEAR, APSARIA</h1>
+  <p class="typewriter" id="subtitle"></p>
+  <button onclick="nextPage()">Open Your Wishes</button>
+</div>
 
-  <!-- Romantic Wishes Pages -->
-  <div class="container hidden" id="romantic">
-    <p id="romanticText"></p>
-    <img src="girl-dance.gif" alt="Dancing Girl" class="cartoon-girl">
-    <button id="romanticNext">Next</button>
-  </div>
+<!-- Romantic Messages -->
+<div class="page page1" id="page1">
+  <p>"Every moment with you made 2025 unforgettable."</p>
+  <button onclick="nextPage()">Next</button>
+</div>
+<div class="page page2" id="page2">
+  <p>"Here’s to a 2026 full of love, laughter, and dreams together."</p>
+  <button onclick="nextPage()">Next</button>
+</div>
+<div class="page page3" id="page3">
+  <p>"You are my sparkle in every moment, my heart in every beat."</p>
+  <button onclick="nextPage()">Next</button>
+</div>
 
-  <!-- Questions Page -->
-  <div class="container hidden" id="questions">
-    <p id="questionText"></p>
-    <input type="text" id="answerInput" placeholder="Type your answer here...">
-    <button id="nextBtn">Next</button>
-  </div>
+<!-- Interactive Questions -->
+<div class="page page4" id="page4">
+  <p>What is your happiest memory with me this year?</p>
+  <input type="text" id="q1" placeholder="Type here...">
+  <button onclick="nextPage()">Next</button>
+</div>
+<div class="page page5" id="page5">
+  <p>What was your funniest moment of 2025?</p>
+  <input type="text" id="q2" placeholder="Type here...">
+  <button onclick="nextPage()">Next</button>
+</div>
+<div class="page page6" id="page6">
+  <p>What was your saddest moment of the year?</p>
+  <input type="text" id="q3" placeholder="Type here...">
+  <button onclick="nextPage()">Next</button>
+</div>
+<div class="page page7" id="page7">
+  <p>What was your angriest moment?</p>
+  <input type="text" id="q4" placeholder="Type here...">
+  <button onclick="nextPage()">Next</button>
+</div>
+<div class="page page8" id="page8">
+  <p>Favorite song this year?</p>
+  <input type="text" id="q5" placeholder="Type here...">
+  <button onclick="nextPage()">Next</button>
+</div>
+<div class="page page9" id="page9">
+  <p>Favorite movie watched with me?</p>
+  <input type="text" id="q6" placeholder="Type here...">
+  <button onclick="nextPage()">Next</button>
+</div>
+<div class="page page10" id="page10">
+  <p>Favorite memory together?</p>
+  <input type="text" id="q7" placeholder="Type here...">
+  <button onclick="nextPage()">Next</button>
+</div>
+<div class="page page11" id="page11">
+  <p>Special wishes for me?</p>
+  <input type="text" id="q8" placeholder="Type here...">
+  <button onclick="nextPage()">Next</button>
+</div>
+<div class="page page12" id="page12">
+  <p>Any fun resolution for 2026?</p>
+  <input type="text" id="q9" placeholder="Type here...">
+  <button onclick="nextPage()">Next</button>
+</div>
+<div class="page page13" id="page13">
+  <p>Best compliment you want to give me?</p>
+  <input type="text" id="q10" placeholder="Type here...">
+  <button onclick="nextPage()">Next</button>
+</div>
 
-  <!-- Summary Page -->
-  <div class="container hidden" id="summary">
-    <h2>Your Answers</h2>
-    <div id="answersList"></div>
-  </div>
+<!-- Summary Page -->
+<div class="page page14" id="page14">
+  <h1>Your Memories & Wishes</h1>
+  <div id="summary"></div>
+  <button onclick="restart()">Restart</button>
+</div>
 
-  <!-- Background Music -->
-  <audio id="bgMusic" loop>
-    <source src="song.mp3" type="audio/mpeg">
-  </audio>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
-
-
-
