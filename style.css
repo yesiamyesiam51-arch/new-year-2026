@@ -1,0 +1,32 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #ff5f6d, #ffc371);
+  font-family: 'Segoe UI', sans-serif;
+  color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+
+.container {
+  animation: float 2s infinite alternate;
+}
+
+@keyframes float {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-20px); }
+}
+
+#greeting {
+  font-size: 3rem;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
+
+#name {
+  font-size: 2rem;
+  margin-top: 20px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+}
