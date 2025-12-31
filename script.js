@@ -1,155 +1,141 @@
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  overflow: hidden;
-  text-align: center;
-  transition: background 1s ease;
-}
+const startBtn = document.getElementById('startBtn');
+const landing = document.getElementById('landing');
+const romanticDiv = document.getElementById('romantic');
+const romanticText = document.getElementById('romanticText');
+const romanticNext = document.getElementById('romanticNext');
+const questionsDiv = document.getElementById('questions');
+const questionText = document.getElementById('questionText');
+const answerInput = document.getElementById('answerInput');
+const nextBtn = document.getElementById('nextBtn');
+const summaryDiv = document.getElementById('summary');
+const answersList = document.getElementById('answersList');
+const body = document.body;
+const bgMusic = document.getElementById('bgMusic');
 
-/* Page Gradients */
-body.page-0 { background: linear-gradient(to right, #ffb6c1, #ff69b4); } /* Pink Landing */
-body.page-1 { background: linear-gradient(to right, #f5c7b8, #f78ca0); } /* Romantic Wish 1 */
-body.page-2 { background: linear-gradient(to right, #d291bc, #f4a6c0); } /* Romantic Wish 2 */
-body.page-3 { background: linear-gradient(to right, #a18cd1, #fbc2eb); } /* Romantic Wish 3 */
-body.page-4 { background: linear-gradient(to right, #8a2be2, #4b0082); } /* Q1 */
-body.page-5 { background: linear-gradient(to right, #ffa500, #ffd700); } /* Q2 */
-body.page-6 { background: linear-gradient(to right, #00ced1, #20b2aa); } /* Q3 */
-body.page-7 { background: linear-gradient(to right, #ff7f50, #ff6347); } /* Q4 */
-body.page-8 { background: linear-gradient(to right, #f5af19, #f12711); } /* Q5 */
-body.page-9 { background: linear-gradient(to right, #ff6a88, #ff99ac); } /* Q6 */
-body.page-10 { background: linear-gradient(to right, #43cea2, #185a9d); } /* Q7 */
-body.page-11 { background: linear-gradient(to right, #fbc2eb, #a6c1ee); } /* Q8 */
+// Romantic Messages
+const romanticMessages = [
+`Happy New Year, Apsaria ❤️
+Another year has passed, filled with memories, laughter, and moments that I’ll never forget. As the clock strikes twelve, I just want you to know how much you mean to me. Every smile, every laugh, every glance from you made my year brighter. I wish this new year brings you endless joy, love, and everything your heart truly desires. You are my favorite part of every day, and I can’t wait to make more memories together in 2026.`,
 
-.hidden { display: none; }
+`To the most beautiful soul in my life 🌸
+This year may have had ups and downs, but every moment shared with you was a blessing I’ll cherish forever. I hope 2026 wraps you in warmth, happiness, and love beyond measure. May your dreams take flight, your heart always feel safe, and your days be filled with laughter. Thank you for being you — amazing, kind, and mine. Happy New Year, my love.`,
 
-.container {
-  animation: float 2s infinite alternate;
-  padding: 20px;
-  max-width: 700px;
-}
+`Apsaria, my heart 🌹
+As the year ends, I want you to know that my world is brighter because of you. Every little moment — your smile, your voice, your presence — made my year unforgettable. I promise to make 2026 even more special for you, with love, care, and memories that we’ll treasure forever. Happy New Year, my love. You are my everything, and I’ll always hold you close, today and always.`
+];
 
-h1 {
-  font-family: 'Pacifico', cursive;
-  font-size: 3rem;
-  margin-bottom: 20px;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
-}
+const questions = [
+  "Your New Year Resolutions?",
+  "Your Wishes for Me?",
+  "Your Favorite Memory This Year?",
+  "Favorite Movie Watched With Me?",
+  "Favorite Song This Year?",
+  "Favorite Memory With Me?",
+  "Your Happiest Moment?",
+  "Your Saddest Moment?",
+  "Your Angriest Moment?",
+  "Your Funniest Moment?"
+];
 
-p {
-  font-family: 'Caveat', cursive;
-  font-size: 1.4rem;
-  line-height: 1.6;
-}
+let answers = [];
+let currentRomantic = 0;
+let currentQ = 0;
 
-button {
-  padding: 12px 25px;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 20px;
-  cursor: pointer;
-  background: #fff;
-  color: #ff69b4;
-  font-weight: bold;
-  box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-  transition: transform 0.2s, background 0.2s, color 0.2s;
-}
+// Confetti
+const colors = ['#ff5f6d','#ffc371','#fddb92','#1e3c72','#2a5298'];
+function createConfetti() {
+  const confetti = document.createElement('div');
+  confetti.className = 'confetti';
+  confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+  confetti.style.top = '0px';
+  confetti.style.left = Math.random() * window.innerWidth + 'px';
+  document.body.appendChild(confetti);
 
-button:hover {
-  transform: scale(1.1);
-  background: #ff69b4;
-  color: #fff;
+  let top = 0;
+  const fall = setInterval(() => {
+    top += 5;
+    confetti.style.top = top + 'px';
+    if(top > window.innerHeight) {
+      confetti.remove();
+      clearInterval(fall);
+    }
+  }, 20);
 }
+setInterval(createConfetti, 100);
 
-input {
-  padding: 12px;
-  font-size: 1rem;
-  border-radius: 15px;
-  border: none;
-  width: 80%;
-  margin: 10px 0;
-  font-family: 'Caveat', cursive;
-  text-align: center;
+// Sparkles
+function createSparkle() {
+  const sparkle = document.createElement('div');
+  sparkle.className = 'sparkle';
+  sparkle.style.left = Math.random() * window.innerWidth + 'px';
+  sparkle.style.top = Math.random() * window.innerHeight + 'px';
+  document.body.appendChild(sparkle);
+  setTimeout(() => sparkle.remove(), 1000);
 }
+setInterval(createSparkle, 300);
 
-@keyframes float {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-15px); }
-}
+// Start Button
+startBtn.addEventListener('click', () => {
+  landing.classList.add('hidden');
+  romanticDiv.classList.remove('hidden');
+  romanticText.textContent = romanticMessages[currentRomantic];
+  body.className = `page-${currentRomantic+1}`;
+  bgMusic.play();
+});
 
-#answersList p {
-  font-size: 1.2rem;
-  margin: 10px 0;
-  background: rgba(255,255,255,0.2);
-  padding: 10px;
-  border-radius: 10px;
-  font-family: 'Caveat', cursive;
-}
+// Romantic Next Button
+romanticNext.addEventListener('click', () => {
+  currentRomantic++;
+  if(currentRomantic < romanticMessages.length){
+    romanticText.textContent = romanticMessages[currentRomantic];
+    body.className = `page-${currentRomantic+1}`;
+  } else {
+    romanticDiv.classList.add('hidden');
+    questionsDiv.classList.remove('hidden');
+    questionText.textContent = questions[currentQ];
+    body.className = `page-${currentRomantic+1}`;
+  }
+});
 
-/* Confetti */
-.confetti {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  z-index: 1000;
-}
+// Questions Next Button
+nextBtn.addEventListener('click', () => {
+  const answer = answerInput.value.trim();
+  if(answer === "") return;
+  answers.push(`${questions[currentQ]} → ${answer}`);
+  answerInput.value = "";
+  currentQ++;
+  if(currentQ < questions.length){
+    questionText.textContent = questions[currentQ];
+    body.className = `page-${currentRomantic+1+currentQ}`;
+  } else {
+    questionsDiv.classList.add('hidden');
+    showSummary();
+  }
+});
 
-/* Sparkle */
-.sparkle {
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #fff;
-  opacity: 0.8;
-  animation: sparkleAnim 1s linear infinite;
-  pointer-events: none;
+function showSummary() {
+  summaryDiv.classList.remove('hidden');
+  answers.forEach(ans => {
+    const p = document.createElement('p');
+    p.textContent = ans;
+    answersList.appendChild(p);
+  });
 }
+// Floating Hearts for Romantic Pages
+function createHeart() {
+  if(currentRomantic === undefined) return;
+  if(currentRomantic >= 0 && currentRomantic < romanticMessages.length){
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * window.innerWidth + 'px';
+    heart.style.width = 15 + Math.random()*15 + 'px';
+    heart.style.height = heart.style.width;
+    heart.style.animationDuration = 4 + Math.random()*3 + 's';
+    heart.style.backgroundColor = ['#ff6b81','#ffb6c1','#ff3d7f'][Math.floor(Math.random()*3)];
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(), 5000);
+  }
+}
+setInterval(createHeart, 500); // every 0.5 sec a heart
 
-@keyframes sparkleAnim {
-  0% { transform: scale(1) translateY(0) rotate(0deg); opacity:1; }
-  100% { transform: scale(0) translateY(-50px) rotate(360deg); opacity:0; }
-}
-/* Floating Hearts */
-.heart {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: #ff6b81;
-  transform: rotate(-45deg);
-  animation: floatHeart 5s linear infinite;
-  opacity: 0.8;
-  z-index: 1000;
-}
-
-.heart::before,
-.heart::after {
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: #ff6b81;
-  border-radius: 50%;
-}
-
-.heart::before {
-  top: -10px;
-  left: 0;
-}
-
-.heart::after {
-  top: 0;
-  left: 10px;
-}
-
-@keyframes floatHeart {
-  0% { transform: translateY(0) rotate(-45deg) scale(0.8); opacity: 0.8; }
-  50% { transform: translateY(-200px) rotate(-45deg) scale(1); opacity: 1; }
-  100% { transform: translateY(-400px) rotate(-45deg) scale(0.8); opacity: 0; }
-}
 
