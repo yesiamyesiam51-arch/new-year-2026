@@ -14,14 +14,11 @@ const bgMusic = document.getElementById('bgMusic');
 
 // Romantic Messages
 const romanticMessages = [
-`Happy New Year, Apsaria ❤️
-Another year has passed, filled with memories, laughter, and moments that I’ll never forget. As the clock strikes twelve, I just want you to know how much you mean to me. Every smile, every laugh, every glance from you made my year brighter. I wish this new year brings you endless joy, love, and everything your heart truly desires. You are my favorite part of every day, and I can’t wait to make more memories together in 2026.`,
+`Happy New Year, Apsaria ❤️ Another year has passed, filled with laughter and love. You made every moment brighter, and I wish 2026 brings you endless joy and everything your heart desires.`,
 
-`To the most beautiful soul in my life 🌸
-This year may have had ups and downs, but every moment shared with you was a blessing I’ll cherish forever. I hope 2026 wraps you in warmth, happiness, and love beyond measure. May your dreams take flight, your heart always feel safe, and your days be filled with laughter. Thank you for being you — amazing, kind, and mine. Happy New Year, my love.`,
+`To the most beautiful soul 🌸 This year had ups and downs, but every moment with you was a blessing. May 2026 wrap you in warmth, love, and laughter. You are amazing and mine. Happy New Year, my love.`,
 
-`Apsaria, my heart 🌹
-As the year ends, I want you to know that my world is brighter because of you. Every little moment — your smile, your voice, your presence — made my year unforgettable. I promise to make 2026 even more special for you, with love, care, and memories that we’ll treasure forever. Happy New Year, my love. You are my everything, and I’ll always hold you close, today and always.`
+`Apsaria, my heart 🌹 As the year ends, my world is brighter because of you. Every little moment — your smile, your voice, your presence — made my year unforgettable. Happy New Year, my love.`
 ];
 
 const questions = [
@@ -63,16 +60,24 @@ function createConfetti() {
 }
 setInterval(createConfetti, 100);
 
-// Sparkles
-function createSparkle() {
-  const sparkle = document.createElement('div');
-  sparkle.className = 'sparkle';
-  sparkle.style.left = Math.random() * window.innerWidth + 'px';
-  sparkle.style.top = Math.random() * window.innerHeight + 'px';
-  document.body.appendChild(sparkle);
-  setTimeout(() => sparkle.remove(), 1000);
+// Floating hearts coded but disabled
+function createHeart() {
+  const showHearts = false; // <-- change to true to enable
+  if(!showHearts) return;
 }
-setInterval(createSparkle, 300);
+setInterval(createHeart, 500);
+
+// Cartoon characters (optional, static for now)
+function createCartoon() {
+  const images = ['cartoon1.png','cartoon2.png']; // add your images
+  const cartoon = document.createElement('div');
+  cartoon.className = 'cartoon';
+  cartoon.style.left = Math.random() * window.innerWidth + 'px';
+  cartoon.style.backgroundImage = `url(${images[Math.floor(Math.random()*images.length)]})`;
+  document.body.appendChild(cartoon);
+  setTimeout(()=>cartoon.remove(), 10000);
+}
+setInterval(createCartoon, 3000);
 
 // Start Button
 startBtn.addEventListener('click', () => {
@@ -121,21 +126,5 @@ function showSummary() {
     answersList.appendChild(p);
   });
 }
-// Floating Hearts for Romantic Pages
-function createHeart() {
-  if(currentRomantic === undefined) return;
-  if(currentRomantic >= 0 && currentRomantic < romanticMessages.length){
-    const heart = document.createElement('div');
-    heart.className = 'heart';
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.width = 15 + Math.random()*15 + 'px';
-    heart.style.height = heart.style.width;
-    heart.style.animationDuration = 4 + Math.random()*3 + 's';
-    heart.style.backgroundColor = ['#ff6b81','#ffb6c1','#ff3d7f'][Math.floor(Math.random()*3)];
-    document.body.appendChild(heart);
-    setTimeout(()=>heart.remove(), 5000);
-  }
-}
-setInterval(createHeart, 500); // every 0.5 sec a heart
 
 
