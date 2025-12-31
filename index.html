@@ -1,35 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy New Year 2026 – Apsaria</title>
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@400;600&family=Caveat&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy New Year 2026 – Apsaria</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Caveat&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body class="page-0">
 
   <!-- Landing Page -->
   <div class="container" id="landing">
-    <h1 id="greeting">🎆 Happy New Year 2026 – Apsaria 🎆</h1>
+    <h1>🎆 Happy New Year 2026 – Apsaria 🎆</h1>
     <button id="startBtn">Start</button>
   </div>
 
   <!-- Romantic Wishes Pages -->
   <div class="container hidden" id="romantic">
-    <div class="message-box">
-      <p id="romanticText"></p>
-      <button id="romanticNext">Next</button>
-    </div>
+    <p id="romanticText"></p>
+    <img src="girl-dance.gif" alt="Dancing Girl" class="cartoon-girl">
+    <button id="romanticNext">Next</button>
   </div>
 
   <!-- Questions Page -->
   <div class="container hidden" id="questions">
-    <div class="question-box">
-      <p id="questionText"></p>
-      <input type="text" id="answerInput" placeholder="Type here...">
-      <button id="nextBtn">Next</button>
-    </div>
+    <p id="questionText"></p>
+    <input type="text" id="answerInput" placeholder="Type your answer here...">
+    <button id="nextBtn">Next</button>
   </div>
 
   <!-- Summary Page -->
@@ -37,8 +34,15 @@
     <h2>Your Answers</h2>
     <div id="answersList"></div>
   </div>
-  
+
+  <!-- Background Music -->
+  <audio id="bgMusic" loop>
+    <source src="song.mp3" type="audio/mpeg">
+  </audio>
+
   <script src="script.js"></script>
 </body>
 </html>
+
+
 
