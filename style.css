@@ -1,50 +1,47 @@
 body {
   margin: 0;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto', sans-serif;
   color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  overflow: hidden;
   text-align: center;
+  overflow: hidden;
   transition: background 1s ease;
 }
 
-/* Dark Gradient Backgrounds for readability */
-body.page-0 { background: linear-gradient(to right, #0f2027, #203a43, #2c5364); } /* Landing */
-body.page-1 { background: linear-gradient(to right, #1f1c2c, #928dab); } /* Romantic Wish 1 */
-body.page-2 { background: linear-gradient(to right, #2c3e50, #4ca1af); } /* Romantic Wish 2 */
-body.page-3 { background: linear-gradient(to right, #200122, #6f0000); } /* Romantic Wish 3 */
-body.page-4 { background: linear-gradient(to right, #0f2027, #203a43); } /* Q1 */
-body.page-5 { background: linear-gradient(to right, #1f4037, #99f2c8); } /* Q2 */
-body.page-6 { background: linear-gradient(to right, #4b6cb7, #182848); } /* Q3 */
-body.page-7 { background: linear-gradient(to right, #0f0c29, #302b63); } /* Q4 */
-body.page-8 { background: linear-gradient(to right, #1e3c72, #2a5298); } /* Q5 */
-body.page-9 { background: linear-gradient(to right, #2c3e50, #fd746c); } /* Q6 */
-body.page-10 { background: linear-gradient(to right, #232526, #414345); } /* Q7 */
-body.page-11 { background: linear-gradient(to right, #0f2027, #2c5364); } /* Q8 */
+/* Page Gradients */
+body.page-0 { background: linear-gradient(to right, #1a1a2e, #162447); }
+body.page-1 { background: linear-gradient(to right, #0f3460, #53354a); }
+body.page-2 { background: linear-gradient(to right, #162447, #1f4068); }
+body.page-3 { background: linear-gradient(to right, #1e1f26, #3d3d5c); }
+body.page-4 { background: linear-gradient(to right, #232526, #414345); }
+body.page-5 { background: linear-gradient(to right, #141e30, #243b55); }
+body.page-6 { background: linear-gradient(to right, #1c1c1c, #3a3a3a); }
+body.page-7 { background: linear-gradient(to right, #0f2027, #203a43); }
+body.page-8 { background: linear-gradient(to right, #232526, #414345); }
+body.page-9 { background: linear-gradient(to right, #1f1c2c, #928dab); }
+body.page-10 { background: linear-gradient(to right, #2c3e50, #4ca1af); }
+body.page-11 { background: linear-gradient(to right, #232526, #414345); }
 
 .hidden { display: none; }
-
-.container {
-  animation: float 2s infinite alternate;
-  padding: 20px;
-  max-width: 700px;
-}
 
 h1 {
   font-family: 'Pacifico', cursive;
   font-size: 3rem;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  animation: fadeIn 2s forwards;
 }
 
 p {
   font-family: 'Caveat', cursive;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   line-height: 1.6;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  margin-bottom: 20px;
+  opacity: 0;
+  animation: fadeIn 2s forwards;
 }
 
 button {
@@ -77,42 +74,46 @@ input {
   text-align: center;
 }
 
-@keyframes float {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-15px); }
-}
-
 #answersList p {
   font-size: 1.2rem;
   margin: 10px 0;
   background: rgba(255,255,255,0.1);
   padding: 10px;
   border-radius: 10px;
-  font-family: 'Caveat', cursive;
 }
 
-/* Confetti */
-.confetti {
+/* Floating Hearts */
+.heart {
   position: absolute;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  z-index: 1000;
+  width: 15px;
+  height: 15px;
+  background-color: #ff69b4;
+  transform: rotate(45deg);
+  top: 0;
+  z-index: 10;
+  border-radius: 3px;
+  animation: floatHeart 4s linear infinite;
 }
 
-/* Cartoon characters floating (optional) */
-.cartoon {
+@keyframes floatHeart {
+  0% { transform: translateY(0) rotate(45deg); opacity: 1; }
+  100% { transform: translateY(-500px) rotate(45deg); opacity: 0; }
+}
+
+/* Cartoon girl */
+.cartoon-girl {
+  width: 150px;
   position: absolute;
-  width: 50px;
-  height: 50px;
-  background-size: cover;
-  z-index: 900;
-  animation: floatCartoon 5s linear infinite;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: danceMove 2s ease-in-out infinite alternate;
 }
 
-@keyframes floatCartoon {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-  100% { transform: translateY(0px); }
+@keyframes danceMove {
+  0% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-15px); }
+  100% { transform: translateX(-50%) translateY(0); }
 }
 
+@keyframes fadeIn { to { opacity: 1; } }
