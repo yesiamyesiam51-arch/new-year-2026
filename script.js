@@ -1,128 +1,51 @@
-const startBtn = document.getElementById('startBtn');
-const landing = document.getElementById('landing');
-const romanticDiv = document.getElementById('romantic');
-const romanticText = document.getElementById('romanticText');
-const romanticNext = document.getElementById('romanticNext');
-const questionsDiv = document.getElementById('questions');
-const questionText = document.getElementById('questionText');
-const answerInput = document.getElementById('answerInput');
-const nextBtn = document.getElementById('nextBtn');
-const summaryDiv = document.getElementById('summary');
-const answersList = document.getElementById('answersList');
-const body = document.body;
-const bgMusic = document.getElementById('bgMusic');
+/* GENERAL RESET */
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Caveat', cursive; overflow:hidden; height:100vh; width:100vw; perspective:800px; }
 
-// Romantic Messages
-const romanticMessages = [
-`Happy New Year, Apsaria ❤️
-Another year has passed, filled with memories, laughter, and moments that I’ll never forget. Every smile, every laugh, every glance from you made my year brighter. I wish this new year brings you endless joy, love, and everything your heart truly desires.`,
+/* PAGES */
+.page { display:none; position:absolute; width:100%; height:100%; text-align:center; color:#fff; padding-top:20vh; transition:all 0.8s ease; }
 
-`To the most beautiful soul in my life 🌸
-This year may have had ups and downs, but every moment shared with you was a blessing I’ll cherish forever. I hope 2026 wraps you in warmth, happiness, and love beyond measure.`,
+/* GRADIENT BACKGROUNDS */
+.page0 { background: linear-gradient(135deg,#ff69b4,#000); }
+.page1 { background: linear-gradient(135deg,#6a0572,#1f1b24); }
+.page2 { background: linear-gradient(135deg,#220033,#440044); }
+.page3 { background: linear-gradient(135deg,#2c003e,#5c005c); }
+.page4 { background: linear-gradient(135deg,#0a1f44,#112244); }
+.page5 { background: linear-gradient(135deg,#1c1c2e,#2e2e44); }
+.page6 { background: linear-gradient(135deg,#440022,#660044); }
+.page7 { background: linear-gradient(135deg,#1f0033,#330055); }
+.page8 { background: linear-gradient(135deg,#220011,#440022); }
+.page9 { background: linear-gradient(135deg,#2c0033,#5c0055); }
+.page10 { background: linear-gradient(135deg,#1a0033,#330044); }
+.page11 { background: linear-gradient(135deg,#2a0022,#550044); }
+.page12 { background: linear-gradient(135deg,#000022,#000044); }
+.page13 { background: linear-gradient(135deg,#220022,#440044); }
+.page14 { background: linear-gradient(135deg,#330022,#660044); }
 
-`Apsaria, my heart 🌹
-As the year ends, I want you to know that my world is brighter because of you. I promise to make 2026 even more special for you, with love, care, and memories that we’ll treasure forever.`
-];
+/* TEXT */
+h1 { font-family:'Pacifico', cursive; font-size:3rem; margin-bottom:20px; opacity:0; animation:fadeZoom 2s forwards; }
+p { font-size:1.5rem; margin:10px 20px; opacity:0; animation:fadeIn 2s forwards; }
+button { padding:12px 25px; font-size:1.2rem; border:none; border-radius:25px; cursor:pointer; margin-top:20px; font-weight:bold; color:#ff69b4; background:#fff; transition:all 0.2s; }
+button:hover { transform:scale(1.1); background:#ff69b4; color:#fff; }
 
-const questions = [
-  "Your New Year Resolutions?",
-  "Your Wishes for Me?",
-  "Your Favorite Memory This Year?",
-  "Favorite Movie Watched With Me?",
-  "Favorite Song This Year?",
-  "Favorite Memory With Me?",
-  "Your Happiest Moment?",
-  "Your Saddest Moment?",
-  "Your Angriest Moment?",
-  "Your Funniest Moment?"
-];
+/* HEARTS */
+.heart { position:absolute; width:20px; height:20px; background-color:#ff69b4; transform:rotate(45deg); border-radius:3px; animation:fall3D linear infinite; opacity:0.8; z-index:10; }
 
-let answers = [];
-let currentRomantic = 0;
-let currentQ = 0;
-
-// Floating Hearts
-function createHeart() {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.style.left = Math.random() * window.innerWidth + 'px';
-  heart.style.background = ['#ff5f6d','#ffc371','#ff69b4'][Math.floor(Math.random()*3)];
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(), 4000);
+/* HEART ANIMATION */
+@keyframes fall3D {
+0% { transform:translateY(-50px) rotate(45deg) rotateX(0deg) rotateY(0deg); opacity:0; }
+10% { opacity:1; }
+50% { transform:translateY(50vh) rotate(45deg) rotateX(180deg) rotateY(90deg); }
+100% { transform:translateY(110vh) rotate(45deg) rotateX(360deg) rotateY(360deg); opacity:0; }
 }
 
-// Hearts interval only on romantic pages
-setInterval(() => {
-  if(!romanticDiv.classList.contains('hidden')) createHeart();
-}, 400);
+/* CONFETTI */
+.confetti { position:absolute; width:10px; height:10px; background-color:#ff69b4; opacity:0.8; animation:confettiFall linear infinite; }
+@keyframes confettiFall { 0%{transform:translateY(-10px) rotate(0deg);} 100%{transform:translateY(100vh) rotate(360deg);} }
 
-// Confetti for questions
-function createConfetti() {
-  if(!questionsDiv.classList.contains('hidden')) {
-    const confetti = document.createElement('div');
-    confetti.className = 'heart'; // reuse heart class but smaller or change class if you want
-    confetti.style.width = '10px';
-    confetti.style.height = '10px';
-    confetti.style.left = Math.random()*window.innerWidth+'px';
-    confetti.style.background = ['#ff5f6d','#ffc371','#1e3c72','#2a5298'][Math.floor(Math.random()*4)];
-    document.body.appendChild(confetti);
-    let top = 0;
-    const fall = setInterval(()=>{
-      top+=5;
-      confetti.style.top = top+'px';
-      if(top>window.innerHeight){
-        confetti.remove();
-        clearInterval(fall);
-      }
-    },20);
-  }
-}
-setInterval(createConfetti, 150);
+/* TYPEWRITER */
+.typewriter { display:inline-block; border-right:2px solid #fff; white-space:nowrap; overflow:hidden; }
+input { padding:10px; border-radius:10px; border:none; width:60%; margin-top:15px; font-size:1rem; }
+#summary { font-size:1.3rem; margin-top:20px; }
 
-// Start button
-startBtn.addEventListener('click', ()=>{
-  landing.classList.add('hidden');
-  romanticDiv.classList.remove('hidden');
-  romanticText.textContent = romanticMessages[currentRomantic];
-  body.className = `page-${currentRomantic+1}`;
-  bgMusic.play();
-});
 
-// Romantic Next button
-romanticNext.addEventListener('click', ()=>{
-  currentRomantic++;
-  if(currentRomantic<romanticMessages.length){
-    romanticText.textContent = romanticMessages[currentRomantic];
-    body.className = `page-${currentRomantic+1}`;
-  } else {
-    romanticDiv.classList.add('hidden');
-    questionsDiv.classList.remove('hidden');
-    questionText.textContent = questions[currentQ];
-    body.className = `page-${currentRomantic+1}`;
-  }
-});
-
-// Questions Next button
-nextBtn.addEventListener('click', ()=>{
-  const ans = answerInput.value.trim();
-  if(ans==="") return;
-  answers.push(`${questions[currentQ]} → ${ans}`);
-  answerInput.value = "";
-  currentQ++;
-  if(currentQ<questions.length){
-    questionText.textContent = questions[currentQ];
-    body.className = `page-${currentRomantic+1+currentQ}`;
-  } else {
-    questionsDiv.classList.add('hidden');
-    showSummary();
-  }
-});
-
-function showSummary(){
-  summaryDiv.classList.remove('hidden');
-  answers.forEach(a=>{
-    const p = document.createElement('p');
-    p.textContent = a;
-    answersList.appendChild(p);
-  });
-}
